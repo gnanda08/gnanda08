@@ -1,0 +1,44 @@
+import numpy as np
+import openpyxl
+wb = openpyxl.load_workbook('realestatedata.xlsx')
+mysheets = wb.sheetnames
+
+print("print all sheets in Excel Workbook")
+for x in mysheets:
+     print(x)
+sheet = wb['Gaurav']
+
+print("print type sheet")
+print(type(sheet))
+print("sheet name") 
+print(sheet.title)
+
+print(sheet['C4'].value)
+
+for i in range(1, 10):
+    print(sheet.cell(row=i, column=15).value)
+    
+print('\n')
+
+print("goal = get the average of all selling prices");
+houseprice_1 = []
+for i in range(1, 190):
+    #print(sheet.cell(row=i, column=10).value)
+    price = sheet.cell(row=i, column=4).value;
+    #print(price);
+    houseType = sheet.cell(row=i, column=1).value;
+    #print(houseType);
+    description = sheet.cell(row=i, column=2).value;
+    #print(description);
+    numberBedrooms = sheet.cell(row=i, column=3).value;
+    #print(numberBedrooms);
+    houseprice = (houseType, description, numberBedrooms, price)
+    print(houseprice)
+    houseprice_1.append(list(houseprice))
+
+for i in houseprice_1:
+    print(i)
+# printing only house type is detached
+for i in houseprice_1:
+    if i[0] == 'Detached':
+        print(i)
